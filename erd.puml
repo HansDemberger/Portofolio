@@ -1,0 +1,30 @@
+@startuml
+' Define styles
+skinparam classAttributeIconSize 0
+
+' Entity: User
+class User {
+  +user_id: int
+  +username: string
+  +password: string
+  +email: string
+}
+
+' Entity: RiwayatKesehatan
+class RiwayatKesehatan {
+  +usia
+  +jenis_kelamin
+  +tipe_nyeri_dada
+  +hasil_ekg
+  +nyeri_dada
+  +kemiringan_st
+  +jumlah_pembuluh_darah
+  +thalassemia
+}
+
+' Entity: Prediksi
+
+' Relationships
+User ||--o{ RiwayatKesehatan : ""
+
+@enduml
