@@ -20,7 +20,6 @@
       overflow-x: hidden;
     }
 
-    /* Animasi background */
     body::before {
       content: '';
       position: fixed;
@@ -175,148 +174,64 @@
       border-radius: 2px;
     }
 
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
     .project-card {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(10px);
-      margin-bottom: 40px;
       border-radius: 20px;
-      padding: 35px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(45deg, #00d4ff, #ff6b6b, #4ecdc4);
-      background-size: 200% 200%;
-      animation: gradientMove 3s ease-in-out infinite;
+      transition: all 0.3s ease;
     }
 
     .project-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
-    }
-
-    .project-card h3 {
-      color: #00d4ff;
-      margin-bottom: 20px;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    .project-content {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 30px;
-      align-items: start;
-    }
-
-    .project-images {
-      display: grid;
-      gap: 15px;
-      grid-auto-rows: minmax(180px, auto);
-    }
-
-    .project-images.single {
-      grid-template-columns: 1fr;
-    }
-
-    .project-images.double {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .project-images.triple {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      align-items: start;
-    }
-
-    .project-images.triple.mixed-layout {
-      grid-template-columns: 1fr 2fr;
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas: 
-        "img1 img2"
-        "img1 img3";
-      gap: 15px;
-    }
-
-    .project-images.triple.mixed-layout .project-image-container:nth-child(1) {
-      grid-area: img1;
-      min-height: 360px;
-    }
-
-    .project-images.triple.mixed-layout .project-image-container:nth-child(2) {
-      grid-area: img2;
-      min-height: 170px;
-    }
-
-    .project-images.triple.mixed-layout .project-image-container:nth-child(3) {
-      grid-area: img3;
-      min-height: 170px;
-    }
-
-    .project-images.multiple {
-      grid-template-columns: repeat(2, 1fr);
+      box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
     }
 
     .project-image-container {
-      position: relative;
       width: 100%;
-      min-height: 180px;
-      height: auto;
-      border-radius: 15px;
+      height: 250px;
       overflow: hidden;
-      border: 2px solid rgba(0, 212, 255, 0.3);
-      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
-      transition: all 0.4s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .project-image-container:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
-      border-color: #00d4ff;
+      position: relative;
     }
 
     .project-image-container img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      object-position: center;
-      max-height: 320px;
-      transition: transform 0.3s ease;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
 
-    .project-image-container:hover img {
-      transform: scale(1.05);
+    .project-card:hover .project-image-container img {
+      transform: scale(1.1);
     }
 
-    .project-description {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .project-content {
+      padding: 25px;
     }
 
-    .project-card .project-description p {
+    .project-content h3 {
+      color: #00d4ff;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .project-content p {
       color: #e0e0ff;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      text-align: justify;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
 
     .tech-stack {
-      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -349,173 +264,41 @@
       border-radius: 20px 20px 0 0;
     }
 
-    /* Responsive untuk tablet */
-    @media (max-width: 1024px) {
-      .project-content {
-        grid-template-columns: 1fr 1.5fr;
-        gap: 25px;
-      }
-
-      .project-image-container {
-        min-height: 160px;
-      }
-
-      .project-images.triple {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: minmax(200px, auto);
-      }
-
-      .project-images.triple.mixed-layout {
-        grid-template-columns: 1fr 1.5fr;
-        grid-template-areas: 
-          "img1 img2"
-          "img1 img3";
-        grid-auto-rows: minmax(220px, auto);
-        gap: 15px;
-      }
-
-      .project-images.triple.mixed-layout .project-image-container:nth-child(1) {
-        min-height: 320px;
-      }
-
-      .project-images.triple.mixed-layout .project-image-container:nth-child(2),
-      .project-images.triple.mixed-layout .project-image-container:nth-child(3) {
-        min-height: 155px;
-      }
-    }
-
-    /* Responsive untuk mobile */
+    /* Responsive adjustments */
     @media (max-width: 768px) {
-      body {
-        padding: 15px;
+      .projects-container {
+        grid-template-columns: 1fr;
       }
-
+      
       h1 {
         font-size: 2.2rem;
       }
-
-      .project-content {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .project-images {
-        order: 2;
-      }
-
-      .project-description {
-        order: 1;
-      }
-
-      .project-image-container {
-        min-height: 220px;
-      }
-
-      .project-images.double,
-      .project-images.triple,
-      .project-images.multiple {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: minmax(240px, auto);
-      }
-
-      .project-images.triple.mixed-layout {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas: none;
-        grid-auto-rows: minmax(250px, auto);
-      }
-
-      .project-images.triple.mixed-layout .project-image-container:nth-child(1),
-      .project-images.triple.mixed-layout .project-image-container:nth-child(2),
-      .project-images.triple.mixed-layout .project-image-container:nth-child(3) {
-        grid-area: unset;
-        min-height: 250px;
-      }
-
-      .about {
-        padding: 30px 25px;
-      }
-
-      .project-card {
-        padding: 25px;
-      }
-    }
-
-    /* Responsive untuk mobile kecil */
-    @media (max-width: 480px) {
-      body {
-        padding: 10px;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
-
+      
       .profile-pic {
         width: 120px;
         height: 120px;
       }
+      
+      .about {
+        padding: 30px;
+      }
+    }
 
-      .project-card {
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      
+      .project-content {
         padding: 20px;
       }
-
-      .project-images.double,
-      .project-images.triple,
-      .project-images.multiple {
-        grid-template-columns: 1fr;
-        grid-auto-rows: minmax(280px, auto);
-      }
-
-      .project-images.triple.mixed-layout {
-        grid-template-columns: 1fr;
-        grid-template-areas: none;
-        grid-auto-rows: minmax(290px, auto);
-      }
-
-      .project-images.triple.mixed-layout .project-image-container:nth-child(1),
-      .project-images.triple.mixed-layout .project-image-container:nth-child(2),
-      .project-images.triple.mixed-layout .project-image-container:nth-child(3) {
-        grid-area: unset;
-        min-height: 290px;
-      }
-
+      
       .project-image-container {
-        min-height: 280px;
-      }
-
-      .project-card h3 {
-        font-size: 1.3rem;
-      }
-
-      .about {
-        padding: 25px 20px;
+        height: 200px;
       }
     }
 
-    /* Animasi loading untuk gambar */
-    .project-image-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-      animation: loading 2s infinite;
-      z-index: 1;
-    }
-
-    .project-image-container img {
-      position: relative;
-      z-index: 2;
-    }
-
-    @keyframes loading {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    /* Scroll animations */
+    /* Animations */
     .fade-in {
       opacity: 0;
       transform: translateY(30px);
@@ -530,7 +313,7 @@
 </head>
 <body>
   <header>
-    <img src="dem.jpg" alt="Foto Profil Hans Demberger S" class="profile-pic" />
+    <img src="dem.jpg" alt="Professional headshot of Hans Demberger S smiling, wearing business casual attire with a blue background" class="profile-pic" />
     <h1>Hans Demberger S</h1>
     <p class="subtitle">Software Engineering Student</p>
     <!-- <p class="header-description">Mahasiswa Aktif Semester 6 Jurusan Teknologi Informasi, Program Studi Teknologi Rekayasa Perangkat Lunak di Politeknik Negeri Padang</p> -->
@@ -547,17 +330,16 @@
 
   <section class="projects">
     <h2>My Projects</h2>
-
-    <div class="project-card fade-in">
-      <h3>Point of Sales (POS) untuk UMKM</h3>
-      <div class="project-content">
-        <div class="project-images single">
-          <div class="project-image-container">
-            <img src="POS.png" alt="POS UMKM Dashboard" />
-          </div>
+    
+    <div class="projects-container">
+      <!-- Project 1 -->
+      <div class="project-card fade-in">
+        <div class="project-image-container">
+          <img src="Aumkm.png" alt="Point of Sales system dashboard showing product inventory and sales charts" />
         </div>
-        <div class="project-description">
-          <p>Membangun sebuah website sederhana berbasis web yang dirancang untuk mendukung proses transaksi penjualan pada UMKM. Sistem ini mencakup fitur seperti manajemen produk, pencatatan transaksi penjualan, serta pencetakan struk. Tujuan dari pengembangan POS ini adalah untuk membantu pelaku UMKM dalam mengelola penjualan secara lebih efisien dan terstruktur.</p>
+        <div class="project-content">
+          <h3>Point of Sales (POS) untuk UMKM</h3>
+          <p>Membangun sebuah website sederhana berbasis web yang dirancang untuk mendukung proses transaksi penjualan pada UMKM. Sistem ini mencakup fitur seperti manajemen produk, pencatatan transaksi penjualan, serta pencetakan struk.</p>
           <div class="tech-stack">
             <span class="tech-tag">HTML</span>
             <span class="tech-tag">PHP</span>
@@ -566,18 +348,15 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="project-card fade-in">
-      <h3>Sistem Informasi Penjadwalan Sidang Tugas Akhir</h3>
-      <div class="project-content">
-        <div class="project-images single">
-          <div class="project-image-container">
-            <img src="Sidang.avif" alt="Sistem Sidang TA" />
-          </div>
+      
+      <!-- Project 2 -->
+      <div class="project-card fade-in">
+        <div class="project-image-container">
+          <img src="Asidang.png" alt="Thesis scheduling system interface showing calendar and student submissions" />
         </div>
-        <div class="project-description">
-          <p>Website ini dikembangkan menggunakan Laravel untuk mengelola proses sidang tugas akhir mahasiswa. Sistem dirancang dengan empat level akses pengguna, yaitu Admin, Dosen, Mahasiswa, dan Kepala Jurusan. Fitur-fitur utama yang tersedia meliputi autentikasi admin, pengajuan proposal oleh mahasiswa, penjadwalan sidang, penginputan nilai sidang oleh dosen, serta pencetakan berita acara sidang secara otomatis.</p>
+        <div class="project-content">
+          <h3>Sistem Informasi Penjadwalan Sidang Tugas Akhir</h3>
+          <p>Website ini dikembangkan menggunakan Laravel untuk mengelola proses sidang tugas akhir mahasiswa. Sistem dirancang dengan empat level akses pengguna, yaitu Admin, Dosen, Mahasiswa, dan Kepala Jurusan.</p>
           <div class="tech-stack">
             <span class="tech-tag">Laravel</span>
             <span class="tech-tag">PHP</span>
@@ -586,122 +365,84 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="project-card fade-in">
-      <h3>Aplikasi Pendeteksi Hipertensi Dini Mobile</h3>
-      <div class="project-content">
-        <div class="project-images double">
-          <div class="project-image-container">
-            <img src="Hipertensi.png" alt="Hipertensi App Dashboard" />
-          </div>
-          <div class="project-image-container">
-            <img src="Hipertensi1.png" alt="Hipertensi App Features" />
-          </div>
+      
+      <!-- Project 3 -->
+      <div class="project-card fade-in">
+        <div class="project-image-container">
+          <img src="Abimage.png" alt="Hypertension detection app interface with health metrics dashboard" />
         </div>
-        <div class="project-description">
-          <p>Membangun sebuah aplikasi mobile yang berfungsi untuk mendeteksi risiko hipertensi secara dini. Aplikasi ini menggunakan input data kesehatan pengguna untuk melakukan analisis dan memberikan prediksi risiko hipertensi, sehingga dapat membantu pengguna dalam mengambil langkah pencegahan lebih awal.</p>
+        <div class="project-content">
+          <h3>Aplikasi Pendeteksi Hipertensi Dini Mobile</h3>
+          <p>Membangun aplikasi mobile yang berfungsi untuk mendeteksi risiko hipertensi secara dini. Aplikasi ini menggunakan input data kesehatan pengguna untuk melakukan analisis dan memberikan prediksi risiko hipertensi.</p>
           <div class="tech-stack">
             <span class="tech-tag">Flutter</span>
             <span class="tech-tag">Dart</span>
             <span class="tech-tag">Flask</span>
             <span class="tech-tag">Python</span>
-            <span class="tech-tag">Machine Learning</span>
           </div>
         </div>
       </div>
-    </div>
-    <div class="project-card fade-in">
-      <h3>Aplikasi E-commerce Mobile</h3>
-      <div class="project-content">
-        <div class="project-images single">
-          <div class="project-image-container">
-            <img src="Ecomerce.png" alt="Sate Biaro UI Design" />
-            <!-- <img src="sate1.png" alt="Sate Biaro UI Design" /> -->
-          </div>
-           <div class="project-image-container">
-            <!-- <img src="sate.png" alt="Sate Biaro UI Design" /> -->
-            <img src="Ecomerece.png" alt="Sate Biaro UI Design" />
-          </div>
+      
+      <!-- Project 4 -->
+      <div class="project-card fade-in">
+        <div class="project-image-container">
+          <img src="AEcomerceee.png" alt="E-commerce app screens showing product listings and shopping cart" />
         </div>
-        <div class="project-description">
-          <p>Mengembangkan aplikasi e-commerce berbasis Flutter untuk platform mobile, dengan backend menggunakan PHP dan basis data MySQL. Aplikasi ini dirancang untuk memudahkan pengguna dalam menelusuri produk, menambahkan ke keranjang, melakukan transaksi, dan melihat riwayat pembelian secara praktis melalui perangkat mobile.</p>
+        <div class="project-content">
+          <h3>Aplikasi E-commerce Mobile</h3>
+          <p>Mengembangkan aplikasi e-commerce berbasis Flutter untuk platform mobile, dengan backend menggunakan PHP dan basis data MySQL. Aplikasi ini dirancang untuk memudahkan pengguna dalam menelusuri produk.</p>
           <div class="tech-stack">
             <span class="tech-tag">Flutter</span>
             <span class="tech-tag">Dart</span>
             <span class="tech-tag">PHP</span>
             <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">REST API</span>
           </div>
         </div>
       </div>
-    </div>
-    <div class="project-card fade-in">
-      <h3>Maps Marker </h3>
-      <div class="project-content">
-        <div class="project-images single">
-          <div class="project-image-container">
-            <img src="Maps1.png" alt="Sate Biaro UI Design" />
-            <!-- <img src="sate1.png" alt="Sate Biaro UI Design" /> -->
-          </div>
-           <div class="project-image-container">
-            <!-- <img src="sate.png" alt="Sate Biaro UI Design" /> -->
-            <img src="Maps.png" alt="Sate Biaro UI Design" />
-          </div>
+      
+      <!-- Project 5 -->
+      <div class="project-card fade-in">
+        <div class="project-image-container">
+          <img src="Amaps.png" alt="Map application interface with location markers and details panel" />
         </div>
-        <div class="project-description">
-          <p>Mengembangkan aplikasi Android dengan Kotlin dan Google Maps API untuk menampilkan lokasi berupa marker yang terhubung ke backend PHP dan MySQL. Aplikasi memungkinkan pengguna melihat dan menambahkan informasi lokasi, lengkap dengan nama, koordinat, dan deskripsi melalui API yang dikonfigurasi via Google Developer Console.</p>
+        <div class="project-content">
+          <h3>Maps Marker</h3>
+          <p>Mengembangkan aplikasi Android untuk menampilkan lokasi berupa marker yang terhubung ke backend PHP dan MySQL. Memungkinkan pengguna melihat dan menambahkan informasi lokasi.</p>
           <div class="tech-stack">
             <span class="tech-tag">Kotlin</span>
             <span class="tech-tag">Google Maps API</span>
             <span class="tech-tag">PHP</span>
             <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">Android Studio</span>
           </div>
         </div>
       </div>
-    </div>
-  
-
-    <div class="project-card fade-in">
-      <h3>Desain UI/UX Aplikasi Pemesanan Sate Biaro untuk UMKM</h3>
-      <div class="project-content">
-        <div class="project-images single">
-          <div class="project-image-container">
-            <img src="sate.png" alt="Sate Biaro UI Design" />
-            <!-- <img src="sate1.png" alt="Sate Biaro UI Design" /> -->
-          </div>
-           <div class="project-image-container">
-            <!-- <img src="sate.png" alt="Sate Biaro UI Design" /> -->
-            <img src="sate1.png" alt="Sate Biaro UI Design" />
-          </div>
+      
+      <!-- Project 6 -->
+      <div class="project-card fade-in">
+        <div class="project-image-container">
+          <img src="Asatee.png"alt= "ordering app UI designs showing menu and checkout screens" />
         </div>
-        <div class="project-description">
-          <p>Merancang antarmuka pengguna (UI) dan pengalaman pengguna (UX) aplikasi pemesanan makanan khususnya Sate Biaro untuk pelaku UMKM. Proses desain dilakukan menggunakan Figma, dengan fokus pada kemudahan penggunaan, tampilan yang menarik, serta alur pemesanan yang efisien dan ramah pengguna.</p>
+        <div class="project-content">
+          <h3>Desain UI/UX Aplikasi Pemesanan Sate Biaro</h3>
+          <p>Merancang antarmuka pengguna (UI) dan pengalaman pengguna (UX) aplikasi pemesanan makanan khususnya Sate Biaro untuk pelaku UMKM. Proses desain dilakukan menggunakan Figma.</p>
           <div class="tech-stack">
             <span class="tech-tag">Figma</span>
             <span class="tech-tag">UI/UX Design</span>
             <span class="tech-tag">Prototyping</span>
-            <span class="tech-tag">User Research</span>
           </div>
         </div>
       </div>
     </div>
-    </section>
   </section>
 
   <footer>
     <p>© 2025 Hans Demberger S | Software Engineering Student | Politeknik Negeri Padang</p>
-    <p>hansdemberger18@gmail.com | linkedin.com/in/hans-demberger/ </p>
+    <p>hansdemberger18@gmail.com | linkedin.com/in/hans-demberger/</p>
   </footer>
 
   <script>
-    // Script untuk animasi dan efek interaktif
     document.addEventListener('DOMContentLoaded', function() {
-      const imageContainers = document.querySelectorAll('.project-image-container');
-      const fadeElements = document.querySelectorAll('.fade-in');
-      
-      // Observer untuk animasi saat scroll
+      // Scroll animations
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -709,339 +450,48 @@
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-
-      // Observer untuk animasi gambar
-      const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, {
         threshold: 0.1
       });
 
-      // Setup observer untuk fade-in elements
-      fadeElements.forEach(element => {
+      document.querySelectorAll('.fade-in').forEach(element => {
         observer.observe(element);
       });
 
-      // Setup initial state untuk gambar dan observe
-      imageContainers.forEach(container => {
-        container.style.opacity = '0';
-        container.style.transform = 'translateY(30px)';
-        container.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        imageObserver.observe(container);
-      });
-
-      // Auto-detect jumlah gambar dan apply class yang sesuai
-      const projectImages = document.querySelectorAll('.project-images');
-      projectImages.forEach(container => {
-        const imageCount = container.querySelectorAll('.project-image-container').length;
-        
-        // Remove existing classes
-        container.className = 'project-images';
-        
-        // Add appropriate class based on image count
-        if (imageCount === 1) {
-          container.classList.add('single');
-        } else if (imageCount === 2) {
-          container.classList.add('double');
-        } else if (imageCount === 3) {
-          container.classList.add('triple');
-          // Check if this is the e-commerce project for mixed layout
-          const projectCard = container.closest('.project-card');
-          const projectTitle = projectCard.querySelector('h3').textContent;
-          if (projectTitle.includes('E-commerce')) {
-            container.classList.add('mixed-layout');
-          }
-        } else {
-          container.classList.add('multiple');
-        }
-      });
-
-      // Smooth scroll untuk link internal
-      const links = document.querySelectorAll('a[href^="#"]');
-      links.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-
-      // Paralax effect untuk header
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const header = document.querySelector('header');
-        const profilePic = document.querySelector('.profile-pic');
-        
-        if (header) {
-          header.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-        
-        if (profilePic) {
-          profilePic.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
-      });
-
-      // Hover effect untuk project cards
+      // Image hover effect enhancement
       const projectCards = document.querySelectorAll('.project-card');
       projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-10px) scale(1.02)';
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const angleY = (x - centerX) / 20;
+          const angleX = (centerY - y) / 20;
+          
+          card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
         });
         
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0)';
         });
       });
 
-      // Loading animation untuk gambar
-      const images = document.querySelectorAll('.project-image-container img');
-      images.forEach(img => {
-        img.addEventListener('load', function() {
-          this.parentElement.classList.add('loaded');
-        });
-        
-        // Jika gambar sudah ter-cache
-        if (img.complete) {
-          img.parentElement.classList.add('loaded');
-        }
-      });
-
-      // Dynamic typing effect untuk header
-      const subtitle = document.querySelector('.subtitle');
-      const originalText = subtitle.textContent;
-      let index = 0;
-      
-      function typeWriter() {
-        if (index < originalText.length) {
-          subtitle.textContent = originalText.slice(0, index + 1) + '|';
-          index++;
-          setTimeout(typeWriter, 100);
-        } else {
-          subtitle.textContent = originalText;
-        }
-      }
-      
-      // Start typing effect after a delay
-      setTimeout(typeWriter, 1000);
-
-      // Tech stack hover animations
+      // Tech tag hover effect
       const techTags = document.querySelectorAll('.tech-tag');
       techTags.forEach(tag => {
         tag.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-3px) scale(1.05)';
-          this.style.boxShadow = '0 5px 15px rgba(0, 212, 255, 0.3)';
+          this.style.transform = 'translateY(-5px)';
+          this.style.boxShadow = '0 10px 20px rgba(0, 212, 255, 0.3)';
         });
         
         tag.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
+          this.style.transform = 'translateY(0)';
           this.style.boxShadow = 'none';
         });
       });
-
-      // Cursor trail effect
-      const cursor = document.createElement('div');
-      cursor.className = 'cursor-trail';
-      cursor.style.cssText = `
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        background: radial-gradient(circle, rgba(0,212,255,0.8) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transition: transform 0.1s ease;
-        transform: translate(-50%, -50%);
-      `;
-      document.body.appendChild(cursor);
-
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-      });
-
-      document.addEventListener('mousedown', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-      });
-
-      document.addEventListener('mouseup', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-      });
-
-      // Progressive loading untuk gambar
-      const imageObserverOptions = {
-        root: null,
-        rootMargin: '50px',
-        threshold: 0.1
-      };
-
-      const lazyImageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            if (img.dataset.src) {
-              img.src = img.dataset.src;
-              img.removeAttribute('data-src');
-            }
-            lazyImageObserver.unobserve(img);
-          }
-        });
-      }, imageObserverOptions);
-
-      // Apply lazy loading to images
-      const lazyImages = document.querySelectorAll('img[data-src]');
-      lazyImages.forEach(img => {
-        lazyImageObserver.observe(img);
-      });
-
-      // Scroll progress indicator
-      const progressBar = document.createElement('div');
-      progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 3px;
-        background: linear-gradient(45deg, #00d4ff, #ff6b6b);
-        z-index: 9999;
-        transition: width 0.25s ease;
-      `;
-      document.body.appendChild(progressBar);
-
-      window.addEventListener('scroll', () => {
-        const scrollProgress = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        progressBar.style.width = scrollProgress + '%';
-      });
-
-      // Easter egg - konami code
-      let konamiCode = [];
-      const correctCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
-      
-      document.addEventListener('keydown', (e) => {
-        konamiCode.push(e.keyCode);
-        if (konamiCode.length > correctCode.length) {
-          konamiCode.shift();
-        }
-        
-        if (konamiCode.join(',') === correctCode.join(',')) {
-          // Trigger easter egg
-          document.body.style.animation = 'rainbow 2s ease-in-out';
-          setTimeout(() => {
-            document.body.style.animation = '';
-          }, 2000);
-          konamiCode = [];
-        }
-      });
-
-      // Add rainbow animation
-      const rainbowStyle = document.createElement('style');
-      rainbowStyle.textContent = `
-        @keyframes rainbow {
-          0% { filter: hue-rotate(0deg); }
-          25% { filter: hue-rotate(90deg); }
-          50% { filter: hue-rotate(180deg); }
-          75% { filter: hue-rotate(270deg); }
-          100% { filter: hue-rotate(360deg); }
-        }
-      `;
-      document.head.appendChild(rainbowStyle);
-
-      // Performance monitoring
-      const perfObserver = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          if (entry.entryType === 'navigation') {
-            console.log('Navigation performance:', entry);
-          }
-        }
-      });
-      
-      if ('PerformanceObserver' in window) {
-        perfObserver.observe({ entryTypes: ['navigation'] });
-      }
-
-      // Accessibility improvements
-      const focusableElements = document.querySelectorAll('a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
-      
-      focusableElements.forEach(el => {
-        el.addEventListener('focus', function() {
-          this.style.outline = '2px solid #00d4ff';
-          this.style.outlineOffset = '2px';
-        });
-        
-        el.addEventListener('blur', function() {
-          this.style.outline = '';
-          this.style.outlineOffset = '';
-        });
-      });
-
-      // Dark mode toggle (bonus feature)
-      const darkModeToggle = document.createElement('button');
-      darkModeToggle.innerHTML = '🌙';
-      darkModeToggle.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 2px solid rgba(255,255,255,0.3);
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-        z-index: 1000;
-      `;
-      
-      darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-        darkModeToggle.innerHTML = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
-      });
-      
-      document.body.appendChild(darkModeToggle);
-
-      // Light mode styles
-      const lightModeStyle = document.createElement('style');
-      lightModeStyle.textContent = `
-        body.light-mode {
-          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-          color: #333;
-        }
-        
-        body.light-mode .about,
-        body.light-mode .project-card {
-          background: rgba(255, 255, 255, 0.9);
-          color: #333;
-          border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        body.light-mode .project-card .project-description p {
-          color: #555;
-        }
-        
-        body.light-mode footer {
-          background: rgba(255, 255, 255, 0.8);
-          color: #666;
-        }
-      `;
-      document.head.appendChild(lightModeStyle);
-
-      console.log('🚀 Portfolio Hans Demberger S loaded successfully!');
-      console.log('💡 Try the Konami code for a surprise: ↑↑↓↓←→←→BA');
     });
   </script>
 </body>
 </html>
+
